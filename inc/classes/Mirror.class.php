@@ -521,22 +521,11 @@ class Mirror
                 true);
             $output = array_shift($parsed_container);
 
-            if (intval(static::$version) < 10) {
-                if (empty($output['file']) or empty($output['size']) or empty($output['date']) or
-                    (!empty($output['language']) and !in_array($output['language'], static::$ESET['lang'])) or
-                    (static::$ESET['x32'] != 1 and preg_match("/32|86/", $output['platform'])) or
-                    (static::$ESET['x64'] != 1 and preg_match("/64/", $output['platform'])) or
-                    (static::$ESET['ess'] != 1 and preg_match("/ess/", $output['type']))
-                )
-                    continue;
-            } else {
-                if (empty($output['file']) or empty($output['size']) or
-                    (static::$ESET['x32'] != 1 and preg_match("/32|86/", $output['platform'])) or
-                    (static::$ESET['x64'] != 1 and preg_match("/64/", $output['platform'])) or
-                    (static::$ESET['ess'] != 1 and preg_match("/ess/", $output['type']))
-                )
-                    continue;
-            }
+            if (empty($output['file']) or empty($output['size']) or
+                (static::$ESET['x32'] != 1 and preg_match("/32|86/", $output['platform'])) or
+                (static::$ESET['x64'] != 1 and preg_match("/64/", $output['platform']))
+            )
+                continue;
 
             $new_files[] = $output;
             $total_size += $output['size'];
@@ -736,7 +725,7 @@ class Mirror
         $upd = Parser::parse_line($content, "versionid");
         $max = 0;
 
-        if (isset($upd) && preg_match('/(' . static::$ESET['filter'] . ')/', $content))
+        if (isset($upd))
             foreach ($upd as $key) $max = $max < intval($key) ? $key : $max;
 
         return $max;

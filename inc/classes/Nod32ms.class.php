@@ -527,21 +527,22 @@ class Nod32ms
             }
         }
 
+/*
         $html_page .= '<tr>';
         $html_page .= '<td colspan="2">' . Language::t("Present versions") . '</td>';
         $html_page .= '<td colspan="2">' . ($ESET['ess'] == 1 ? 'EAV, ESS' : 'EAV') . '</td>';
         $html_page .= '</tr>';
-
+*/
         $html_page .= '<tr>';
         $html_page .= '<td colspan="2">' . Language::t("Present platforms") . '</td>';
         $html_page .= '<td colspan="2">' . ($ESET['x32'] == 1 ? '32bit' : '') . ($ESET['x64'] == 1 ? ($ESET['x32'] ? ', 64bit' : '64bit') : '') . '</td>';
         $html_page .= '</tr>';
-
+/*
         $html_page .= '<tr>';
         $html_page .= '<td colspan="2">' . Language::t("Present languages") . '</td>';
         $html_page .= '<td colspan="2">' . implode(", ", $ESET['lang']) . '</td>';
         $html_page .= '</tr>';
-
+*/
         $html_page .= '<tr>';
         $html_page .= '<td colspan="2">' . Language::t("Last execution of the script") . '</td>';
         $html_page .= '<td colspan="2">' . (static::$start_time ? date("Y-m-d, H:i:s", static::$start_time) : Language::t("n/a")) . '</td>';
@@ -552,17 +553,15 @@ class Nod32ms
         $html_page .= '<td colspan="2"><a href="https://t.me/nod32trialKeys" target="_blank">NOD32 Trial Keys Telegram Channel</a></td>';
         $html_page .= '</tr>';
 
-
         if (Config::get('SCRIPT')['show_login_password']) {
             if (file_exists(static::$key_valid_file)) {
                 $keys = Parser::parse_keys(static::$key_valid_file);
-
 
                 $html_page .= '<tr>';
                 $html_page .= '<td>' . Language::t("Version") . '</td>';
                 $html_page .= '<td>' . Language::t("Used login") . '</td>';
                 $html_page .= '<td>' . Language::t("Used password") . '</td>';
-                $html_page .= '<td>' . Language::t("Expiration date") . '</td>';
+                //$html_page .= '<td>' . Language::t("Expiration date") . '</td>';
                 $html_page .= '</tr>';
 
                 foreach ($keys as $k) {
@@ -571,7 +570,7 @@ class Nod32ms
                     $html_page .= '<td>' . $key[2] . '</td>';
                     $html_page .= '<td>' . $key[0] . '</td>';
                     $html_page .= '<td>' . $key[1] . '</td>';
-                    $html_page .= '<td>' . $key[3] . '</td>';
+                    //$html_page .= '<td>' . $key[3] . '</td>';
                     $html_page .= '</tr>';
                 }
             }
