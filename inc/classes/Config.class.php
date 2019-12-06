@@ -76,6 +76,14 @@ class Config
         // Convert update_version_filter string to pcre
         static::$CONF['ESET']['filter'] = implode('|', array_map("trim", (explode(",", static::$CONF['ESET']['filter']))));
 */
+
+        if (static::$CONF['ESET']['same_as_original']) {
+            if (preg_match('/.*rel.*/',static::$CONF['ESET']['channel']))
+            {
+                static::$CONF['ESET']['channel'] = 'dll-' . static::$CONF['ESET']['channel'];
+            }
+        }
+
         static::check_config();
     }
 

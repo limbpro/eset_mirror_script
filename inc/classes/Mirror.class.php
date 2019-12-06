@@ -557,12 +557,12 @@ class Mirror
     {
         Log::write_log(Language::t("Running %s", __METHOD__), 5, $version);
         register_shutdown_function(array('Mirror', 'destruct'));
+        static::$ESET = Config::get('ESET');
         static::$total_downloads = 0;
         static::$version = $version;
-        static::$dir = 'v' . static::$version . '-rel-*';
+        static::$dir = 'v' . static::$version .'-'. static::$ESET['channel'];
         static::$mirror_dir = $dir;
         static::$updated = false;
-        static::$ESET = Config::get('ESET');
         Log::write_log(Language::t("Mirror initiliazed with dir=%s, mirror_dir=%s", static::$dir, static::$mirror_dir), 5, static::$version);
     }
 
@@ -657,7 +657,7 @@ class Mirror
             new RecursiveIteratorIterator(
                 new RecursiveRegexIterator(
                     new RecursiveDirectoryIterator($dir),
-                    '/v\d+-(' . static::$ESET['filter'] . ')/i'
+                    '/v\d+-(' . static::$ESET['channel'] . ')/i'
                 )
             ),
             '/\.nup$/i'

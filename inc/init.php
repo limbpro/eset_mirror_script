@@ -13,7 +13,7 @@ $DIRECTORIES = [
     10 => 'eset_upd/v10',
     11 => 'eset_upd/v11',
     12 => 'eset_upd/v12',
-    13 => 'eset_upd/v13'
+    13 => 'eset_upd/v13/dll'
 ];
 
 $VERSION = '20191117 [Freedom for All by Kingston]';
