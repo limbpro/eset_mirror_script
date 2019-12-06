@@ -557,11 +557,21 @@ class Mirror
     {
         Log::write_log(Language::t("Running %s", __METHOD__), 5, $version);
         register_shutdown_function(array('Mirror', 'destruct'));
+        $prefixVer = '';
+        $prefixPath = '';
         static::$ESET = Config::get('ESET');
+
+        if ($version > 9 && static::$ESET['same_as_original']) {
+            $prefixVer = '/dll';
+            $prefixPath = 'dll-';
+        }
+
         static::$total_downloads = 0;
         static::$version = $version;
-        static::$dir = 'v' . static::$version .'-'. static::$ESET['channel'];
-        static::$mirror_dir = $dir;
+
+        static::$dir = 'v' . static::$version . '-' . $prefixPath . static::$ESET['channel'];
+        static::$mirror_dir = 'eset_upd' . ($version > 3 ? '/v' . static::$version : '') . $prefixVer;
+
         static::$updated = false;
         Log::write_log(Language::t("Mirror initiliazed with dir=%s, mirror_dir=%s", static::$dir, static::$mirror_dir), 5, static::$version);
     }

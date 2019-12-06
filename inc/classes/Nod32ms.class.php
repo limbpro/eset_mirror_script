@@ -599,8 +599,9 @@ class Nod32ms
 
         foreach ($DIRECTORIES as $version => $dir) {
             if (Config::upd_version_is_set($version) == '1') {
-                Log::write_log(Language::t("Init Mirror for version %s in %s", $version, $dir), 5, $version);
                 Mirror::init($version, $dir);
+                Log::write_log(Language::t("Init Mirror for version %s in %s", $version, Mirror::$mirror_dir), 5, $version);
+
                 $key = $this->read_keys();
 
                 if ($key === null) {
@@ -615,7 +616,7 @@ class Nod32ms
                 }
 
                 Mirror::find_best_mirrors();
-                $old_version = Mirror::get_DB_version(Tools::ds($web_dir, $dir, 'update.ver'));
+                $old_version = Mirror::get_DB_version(Tools::ds($web_dir, Mirror::$mirror_dir, 'update.ver'));
 
                 if (!empty(Mirror::$mirrors)) {
                     foreach (Mirror::$mirrors as $id => $mirror) {

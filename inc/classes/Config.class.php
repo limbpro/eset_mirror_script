@@ -62,6 +62,7 @@ class Config
         if (empty(static::$CONF['ESET']['mirror'])) static::$CONF['ESET']['mirror'] = 'update.eset.com';
 
         static::$CONF['ESET']['mirror'] = array_map("trim", (explode(",", static::$CONF['ESET']['mirror'])));
+
 /*
         // Convert string languages in array LCID
         $lang = explode(",", strtoupper(static::$CONF['ESET']['lang']));
@@ -76,13 +77,6 @@ class Config
         // Convert update_version_filter string to pcre
         static::$CONF['ESET']['filter'] = implode('|', array_map("trim", (explode(",", static::$CONF['ESET']['filter']))));
 */
-
-        if (static::$CONF['ESET']['same_as_original']) {
-            if (preg_match('/.*rel.*/',static::$CONF['ESET']['channel']))
-            {
-                static::$CONF['ESET']['channel'] = 'dll-' . static::$CONF['ESET']['channel'];
-            }
-        }
 
         static::check_config();
     }

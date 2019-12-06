@@ -24,6 +24,8 @@ class Tools
 
         $ch = curl_init();
         curl_setopt_array($ch, $options);
+        //curl_setopt($ch, CURLOPT_TIMEOUT, Config::get('CONNECTION')['timeout']);
+        //curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, Config::get('CONNECTION')['timeout']);
         $res = curl_exec($ch);
 
         $headers = curl_getinfo($ch);
