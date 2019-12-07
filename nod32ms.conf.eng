@@ -241,15 +241,14 @@ version13   = 1
 x32 = 1
 ; Eset Version 64bit OS
 x64 = 1
-; Eset System Security (ESS)
-ess = 1
 
-; Select languages what you want to download
-; will be downloaded. Use comma as separator. Full list of languages:
-; "bgr,chs,cht,csy,dan,deu,enu,esl,esn,eti,fin,fra,frc,hrv,hun,ita,kor,lth,nld,nor,plk,ptb,rom,rus,sky,slv,sve,tha,trk,ukr"
-lang = "rus,enu,ukr"
+; Update channel
+;
+; "rel-sta" - regular
+; "pre-sta" - pre-release
+channel = "rel-sta"
 
-; Filter strings separated by comma, which will be used to filter files/directories to exclude them from download list.
-filter = "rel-sta, rel-bat"
-
-
+; Mirror config as original: 0 / 1
+; This parameter change mirror dir only for antivirus version starting with 10
+; Add DNS record on router, gateway, dns server on localnet to change ip of domain update.eset.com to own ip address update server
+same_as_original = 1
