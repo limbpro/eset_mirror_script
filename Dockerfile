@@ -23,7 +23,6 @@ RUN mv ./eset_mirror_script /home/
 RUN mkdir -p /var/www/nod32mirror
 RUN mkdir -p /home/eset_mirror_script/logs
 RUN mkdir -p /home/eset_mirror_script/logs/log_script
-#COPY /home/eset_mirror_script/nod32ms.conf.eng /home/eset_mirror_script/nod32ms.conf
 RUN find /home/eset_mirror_script -type f -name '*.php' -exec chmod +x {} \;
 
 
