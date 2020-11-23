@@ -25,7 +25,6 @@ class Tools
         $ch = curl_init();
         curl_setopt_array($ch, $options);
         $res = curl_exec($ch);
-
         $headers = curl_getinfo($ch);
         if ($out) @fclose($out);
         curl_close($ch);
@@ -75,9 +74,6 @@ class Tools
      */
     static public function extract_file($unrar_binary, $source, $destination)
     {
-        if (PHP_OS != 'WINNT')
-            $unrar_binary = exec('which unrar');
-
         if (!file_exists($unrar_binary))
             throw new ToolsException("Unrar not exists at %s", $unrar_binary);
 

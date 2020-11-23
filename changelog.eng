@@ -1,18 +1,10 @@
-20191008
- Fixed:
-  - Support PHP 7.3
- Removed:
-  - *.ru.eset.com mirror
- Changed:
-  - Unrar binary need config only for windows
-
-
-20190727
+20191118:
  Added:
-  - 2 mirrors
+  - v13 support
+
+20191106:
  Fixed:
-  - No created folder logs at first start
-  - Remove tmp update.ver files when key invalid
+  - Tools::get_file_mimetype method - added mime type "application/x-wine-extension-ini"
 
 20190309:
  Removed:

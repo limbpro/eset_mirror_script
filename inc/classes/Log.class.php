@@ -161,8 +161,6 @@ class Log
             throw new ConfigException("Empty config file!");
 
         static::$CONF = $ini['LOG'];
-        if (!file_exists(static::$CONF['dir']))
-            mkdir(static::$CONF['dir']);
         static::$CONF['rotate_size'] = Tools::human2bytes(static::$CONF['rotate_size']);
         static::$CONF['MAILER'] = $ini['MAILER'];
         static::$CONF['codepage'] = $ini['SCRIPT']['codepage'];

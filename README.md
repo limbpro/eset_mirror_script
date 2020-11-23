@@ -1,19 +1,10 @@
-# Resources
-Telegram Channel [https://t.me/nod32trialKeys](https://t.me/nod32trialKeys)
-
-Telegram Bot [https://t.me/EsetNod32TrialKeysBot](https://t.me/EsetNod32TrialKeysBot)
-
-Website with TRIAL keys [https://nod32-trial-keys.site/](https://nod32-trial-keys.site/)
-
-# Documentation
-See [docs](/docs) folder
-
-# ESET NOD32 Mirror Script
-Script to create own eset mirror
+# eset_mirror_script
+Script to run own eset mirror
 
 # Requirements
-- PHP
-- nginx or other web-server
+- PHP 5.6+ or 7+
+- unrar
+- nginx(sample configurations in this file below) or other web-server
 
 # Installations
 - copy nod32ms.conf.%lang% -> nod32ms.conf
@@ -39,3 +30,53 @@ Script to create own eset mirror
 - SimpleXML
 - sockets
 - zlib
+
+# Cron simple job
+@hourly **[path to php]** **[path to update.php]**
+
+# Nginx simple configuration
+map $http_user_agent $dir {
+
+ default                        /index.html;
+
+ ~^(ESS.*BPC.3)                 /eset_upd/update.ver;
+
+ ~^(.*Update.*BPC\ (?<ver>\d+))	/eset_upd/v$ver/update.ver;
+
+}
+
+server {
+
+ listen 2221;
+ 
+ server_name **[host]**;
+ 
+
+ access_log /var/log/nginx/**[host]**-access.log;
+ 
+ error_log /var/log/nginx/**[host]**-error.log;
+ 
+ index index.php index.html index.htm;
+ 
+ root **[web_dir from nod32ms.conf]**;
+ 
+ 
+ location / {
+ 
+  root **[web_dir from nod32ms.conf]**;
+  
+ }
+
+ location /update.ver {
+ 
+  rewrite ^/update.ver$ $dir redirect;
+  
+ }
+
+ location ~ /\.ht {
+ 
+  deny  all;
+  
+ }
+ 
+}
