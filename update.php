@@ -2,7 +2,6 @@
 
 require __DIR__ . "/inc/init.php";
 
-
 try {
     Log::init();
     Language::init();
@@ -20,27 +19,18 @@ try {
 
     $nod32ms = new Nod32ms();
 }
-
 catch (ToolsException $e) {
     Log::write_log($e->getMessage(), 0);
 }
-
 catch (ConfigException $e) {
     Log::write_log($e->getMessage(), 0);
 }
-
 catch (SelfUpdateException $e) {
     Log::write_log($e->getMessage(), 0);
 }
-
 catch (phpmailerException $e) {
     Log::write_log($e->getMessage(), 0);
 }
-
 catch (Exception $e) {
     Log::write_log($e->getMessage(), 0);
-}
-
-finally {
-    Log::write_log("Script stopped!", 0);
 }

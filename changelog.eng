@@ -1,10 +1,32 @@
-20191118:
+20201122
  Added:
-  - v13 support
-
-20191106:
+  - Support version: ESET Endpoint 8, ESET 14
+ Deleted:
+  - filter
+  - 4, 6-8, 11 version configuration
  Fixed:
-  - Tools::get_file_mimetype method - added mime type "application/x-wine-extension-ini"
+  - creating symlinks
+
+20200711
+ Added:
+  - Support EES/EEA
+ Deleted:
+  - Filter Package by lang, type
+
+20191008
+ Fixed:
+  - Support PHP 7.3
+ Removed:
+  - *.ru.eset.com mirror
+ Changed:
+  - Unrar binary need config only for windows
+
+20190727
+ Added:
+  - 2 mirrors
+ Fixed:
+  - No created folder logs at first start
+  - Remove tmp update.ver files when key invalid
 
 20190309:
  Removed:

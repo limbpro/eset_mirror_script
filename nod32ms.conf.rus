@@ -12,10 +12,12 @@ timezone = "Europe/Kiev"
 ; Лимит памяти для php
 memory_limit = '32M'
 
-; Путь к исполняемому файлу unrar
-unrar_binary = "/usr/local/bin/unrar"
+; Путь к исполняемому файлу unrar !!  Только для Windows
+unrar_binary = "C:\unrar.exe"
 
 ; Дебаг update.ver файлов
+; 0 - выкл
+; 1 - вкл
 debug_update = 0
 
 ; Путь к корню Вашей www директории, в которой будут размещаться все файлы обновлений.
@@ -148,6 +150,26 @@ rotate_qty = 5
 ; сайтах, используя для этого файлы шаблонов, находящиеся в папке pattern.
 auto = 1
 
+; ###########################
+; добавлено: сентябрь 2019
+; автор: Kingston (kingston1853@gmail.com)
+; Telegram channel: https://t.me/nod32trialKeys
+
+; Данный параметр отвечает за возможность брать ключи с сервера ключей
+; Ключи триальные, официальные, есть возможность брать уникальный ключ
+; с возможностью автоматического обновления ключа
+; Если опция включена, то поиск ключей не происходит
+use_server = 1
+
+; Если включен параметр use_server по указанному адресу происходит запрос ключей
+; Ключи всегда актуальные, автоматически обновляются
+;
+server_url = "https://api.nod32-trial-keys.site/api/single-license"
+
+; ###########################
+; конец блока
+
+
 ; Укажите шаблон для поиска ключей по умолчанию.
 ; Имя данного параметра является именем файла, находящегося в папке pattern.
 ; Расширение .pattern указывать не нужно!
@@ -194,34 +216,22 @@ errors_quantity = 5
 
 [ESET]
 ; IP или DNS адрес серверов обновления, по умолчанию update.eset.com. Можно указать несколько параметров через запятую.
-mirror = "update.eset.com, um01.eset.com, um02.eset.com, um03.eset.com, um04.eset.com, um05.eset.com, um06.eset.com, um07.eset.com, um08.eset.com, um09.eset.com, um10.eset.com, um21.eset.com, um23.eset.com, um10.za.eset.com, um01.ru.eset.com"
+mirror = "update.eset.com, um01.eset.com, um02.eset.com, um03.eset.com, um04.eset.com, um05.eset.com, um06.eset.com, um07.eset.com, um08.eset.com, um09.eset.com, um10.eset.com, um11.eset.com, um13.eset.com, um21.eset.com, um23.eset.com"
 
 ; Создание зеркал обновлений для версий
-version3    = 1
-version4    = 1
-version5    = 1
-version6    = 1
-version7    = 1
-version8    = 1
-version9    = 1
-version10   = 1
-version11   = 1
-version12   = 1
-version13   = 1
+versionv3    = 1
+versionv5    = 1
+versionv9    = 1
+versionv10   = 1
+versionv12   = 1
+versionv13   = 1
+versionv14   = 1
+versionep6   = 1
+versionep7   = 1
+versionep8   = 1
 
 ; 32бит OS модули
 x32 = 1
 
 ; 64бит OS модули
 x64 = 1
-
-; Eset System Security (ESS) модули
-ess = 1
-
-; Укажите версии БД для загрузки. По умолчанию загружаются все версии.
-; Для разделения используйте запятые. Полный список языков:
-lang = "rus,enu,ukr"
-
-; Строки, разделенные запятыми, которые будут использоваться в качестве фильтра.
-; Названия файлов и директорий, не попадающие под фильтр, будут исключены из списка файлов для загрузки.
-filter = "rel-sta, rel-bat"

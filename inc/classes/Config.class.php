@@ -63,18 +63,6 @@ class Config
 
         static::$CONF['ESET']['mirror'] = array_map("trim", (explode(",", static::$CONF['ESET']['mirror'])));
 
-        // Convert string languages in array LCID
-        $lang = explode(",", strtoupper(static::$CONF['ESET']['lang']));
-        sort($lang);
-        $languages = [];
-        $langs = array_map("trim", (explode(",", strtolower(static::$CONF['ESET']['lang']))));
-
-        foreach ($langs as $key) $languages[] = static::$LCID[$key];
-
-        static::$CONF['ESET']['lang'] = $languages;
-
-        // Convert update_version_filter string to pcre
-        static::$CONF['ESET']['filter'] = implode('|', array_map("trim", (explode(",", static::$CONF['ESET']['filter']))));
         static::check_config();
     }
 

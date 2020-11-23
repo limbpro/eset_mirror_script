@@ -15,7 +15,7 @@ class ToolsException extends Exception
     {
         $message = func_get_arg(0);
         $params = func_get_args();
-        array_shift($params);
+        @array_shift($params);
         parent::__construct(Language::t($message, $params));
     }
 
