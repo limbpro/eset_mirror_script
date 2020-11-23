@@ -45,6 +45,9 @@ class Mirror
      */
     static private $ESET;
 
+
+    static public $unAuthorized = false;
+
     /**
      *
      */
@@ -170,9 +173,7 @@ class Mirror
         );
 
         if (is_array($headers) and $headers['http_code'] == 200) {
-            if (preg_match("/text|application\/x-wine-extension-ini/", Tools::get_file_mimetype($archive))) {
-                rename($archive, $extracted);
-            } else {
+            if (preg_match("/rar/", Tools::get_file_mimetype($archive))) {
                 Log::write_log(Language::t("Extracting file %s to %s", $archive, $tmp_path), 5, static::$version);
                 Tools::extract_file(Config::get('SCRIPT')['unrar_binary'], $archive, $tmp_path);
                 @unlink($archive);
@@ -180,6 +181,8 @@ class Mirror
                     $date = date("Y-m-d-H-i-s-") . explode('.', microtime(1))[1];
                     copy("${tmp_path}/update.ver", "${tmp_path}/update_${mirror}_${date}.ver");
                 }
+            } else {
+                rename($archive, $extracted);
             }
         }
     }
@@ -211,8 +214,8 @@ class Mirror
 
             // Download files
             if (!empty($download_files)) {
-                static::$updated = true;
                 static::download_files($download_files);
+                static::$updated = !static::$unAuthorized;
             }
 
             // Delete not needed files
@@ -460,7 +463,12 @@ class Mirror
                     );
                     static::$total_downloads += $header['size_download'];
                     break;
-                } else {
+                } else if ($header['http_code'] == 401) {
+                    static::$unAuthorized = true;
+                    @unlink($out);
+                    return null;
+                }
+                else {
                     @unlink($out);
                 }
             }

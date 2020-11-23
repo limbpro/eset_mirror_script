@@ -18,7 +18,7 @@ RUN apt-get clean
 RUN ln -sf /usr/share/zoneinfo/Europe/Kiev /etc/localtime
 
 # Установка скрипта nod32mirror
-RUN git clone https://github.com/Kingston-kms/eset_mirror_script.git
+RUN git clone https://github.com/limbpro/eset_mirror_script.git
 RUN mv ./eset_mirror_script /home/
 RUN mkdir -p /var/www/nod32mirror
 RUN mkdir -p /home/eset_mirror_script/logs
